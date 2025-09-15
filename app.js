@@ -1,5 +1,5 @@
 // === CONFIG ================================================================
-const API_BASE = "http://127.0.0.1:8000"; // set "" when serving behind same domain
+const API_BASE = ""; // production: Vercel rewrites /api/* → archvizcontrol.ctrlaltxp.com
 
 const $ = (s) => document.querySelector(s);
 
@@ -70,7 +70,6 @@ async function pollUntil(target, timeoutMs=180000, intervalMs=5000){
 
 // === Bindings ==============================================================
 function bindAuth(){
-  // Show/Hide password via HTML button next to input
   const pw=$("#login-password"), btn=$("#toggle-pw");
   btn?.addEventListener("click", ()=>{
     if(!pw) return;
@@ -79,7 +78,6 @@ function bindAuth(){
     btn.textContent = show ? "Hide" : "Show";
   });
 
-  // Login submit
   $("#login-form")?.addEventListener("submit", async (e)=>{
     e.preventDefault(); $("#login-error")?.classList.add("d-none");
     try{
@@ -96,12 +94,9 @@ function bindAuth(){
     }catch{ $("#login-error")?.classList.remove("d-none"); }
   });
 
-  // Logout (now resets form + password visibility)
   $("#signout-btn")?.addEventListener("click", async ()=>{
     try{ await fetch(API_BASE + "/logout", { method:"POST", credentials:"include" }); }catch{}
-    // Clear login form
     $("#login-form")?.reset();
-    // Ensure password field goes back to hidden and button label resets
     const pwField = $("#login-password");
     const toggle  = $("#toggle-pw");
     if (pwField) pwField.type = "password";
