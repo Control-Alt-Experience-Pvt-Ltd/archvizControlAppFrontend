@@ -17,7 +17,11 @@ body {
 .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
   border:1px solid rgba(255,255,255,.12); border-radius: 1.2rem; box-shadow: 0 18px 50px rgba(0,0,0,.45); }
 .muted { color: var(--muted); }
-.instancename { font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif; font-weight:700; letter-spacing:.2px; }
+.instancename { 
+  font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif; 
+  font-weight:700; 
+  letter-spacing:.2px; 
+}
 
 .status-block { text-align: right; }
 .status-wrap  { display:inline-flex; align-items:center; gap:.6rem; }
@@ -74,16 +78,14 @@ input.form-control:focus{ box-shadow:0 0 0 4px var(--ring); border-color: transp
 .btn:disabled{ opacity:.65; }
 .btn:not(:disabled){ opacity:1 !important; }
 
-/* --- Ensure instance title is clearly visible on dark background --- */
+/* --- Fix instance title visibility --- */
 h2.instancename,
 .instancename {
-  color: var(--text) !important;     /* force light text */
+  color: var(--text) !important;     /* force light color */
   font-weight: 800;
   font-size: 1.5rem;
   line-height: 1.2;
   margin: 0 0 .5rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,.35); /* adds contrast glow */
+  text-shadow: 0 2px 8px rgba(0,0,0,.35); /* subtle glow for contrast */
 }
-
-/* In case any parent applied opacity, cancel it for the header row */
 .card .instancename { opacity: 1 !important; }
